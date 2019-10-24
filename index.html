@@ -20,5 +20,25 @@ sudo yum install -y git<br>
 git clone https://github.com/Bernardo-QG/CN.git<br>
 git clone https://github.com/Bernardo-QG/RegistroWEB.git<br>
 git checkout -b rama<br>
+------------------------------------<br>
+docker run -d --name hostapache -p 80:80 -v /home/ec2-user/CN/:/var/www/html/ php:7.3.5-apache<br>
+docker run -d --name hmysql -p 3306:3306 -v /home/ec2-user/CN/:/home/ -e MYSQL_ROOT_PASSWORD=1234 mysql<br>
+----------------------------------------<br>
+docker exec -it hmysql bash<br>
+cd home<br>
+mysql -p<br>
+show databases;<br>
+source bd.sql<br>
+ALTER USER root@'%' IDENTIFIED WITH mysql_native_password BY '1234';<br>
+--------------------------------------<br>
+docker exec -ti hostapache sh<br>
+>> docker-php-ext-install mysqli <br>
+>> docker-php-ext-enable mysqli<br>
+>> apachectl restart<br>
+
+
+
+
+
 
 
