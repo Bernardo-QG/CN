@@ -36,6 +36,15 @@ docker exec -ti hostapache sh<br>
 >> docker-php-ext-install mysqli <br>
 >> docker-php-ext-enable mysqli<br>
 >> apachectl restart<br>
+---------------------------------------------<br>
+
+docker run --name hostmongo --restart=always -d -p 27017:27017 mongo mongod --auth<br>
+sudo docker exec -i -t hostmongo bash<br>
+mongo<br>
+use admin<br>
+db.createUser({user:"bqg", pwd:"1234", roles:[{role:"root", db:"admin"}]})<br>
+mongo -u bqg
+mongo 184.72.193.210:27017/ -u bqg -p
 
 
 
